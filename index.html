@@ -14,11 +14,38 @@
     <link rel="stylesheet" type="text/css" href="assets/css/style.css" />
   </head>
   <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-3">
+          <h1>Giphy Search</h1>
+          <p>Search for that special giphy.</p>
+          <form>
+            <div class="form-group giphy-form">
+              <label for="giphy-input"></label>
+              <input
+                type="input"
+                class="form-control"
+                id="giphy-input"
+                placeholder="Type here"
+              />
+            </div>
+            <button type="submit" class="btn btn-info">Search</button>
+          </form>
+        </div>
+
+        <div class="col-9 alert alert-info">
+          <div id="giphy-view"></div>
+
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+          <script src="assets/js/app.js"></script>
+        </div>
+      </div>
+    </div>
+
     <script
       src="https://code.jquery.com/jquery-3.4.1.min.js"
       integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
       crossorigin="anonymous"
     ></script>
-    <script src="assets/js/app.js"></script>
   </body>
 </html>
