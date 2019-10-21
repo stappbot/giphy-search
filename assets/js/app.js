@@ -11,7 +11,9 @@ var giphy = [
 function displayGiphy() {
   var giph = $(this).attr("data-name");
   var queryURL =
-    "http://api.giphy.com/v1/gifs/search?q=italian+greyhound&apikey=3qa36TfqgfrKDr9roPZQrX8iflqGDn4a";
+    "http://api.giphy.com/v1/gifs/search" +
+    giphy +
+    "&apikey=3qa36TfqgfrKDr9roPZQrX8iflqGDn4a";
 
   $.ajax({
     URL: queryURL,
@@ -35,7 +37,7 @@ function displayGiphy() {
 //function to display giphy
 function renderButtons() {
   //deletes giphys before adding new ones
-  $("#buttons-view").empty();
+  $("#giphy-view").empty();
   //loop through giphy array
   for (let i = 0; i < giphy.length; i++) {
     //generate buttons for each giphy in array
@@ -45,6 +47,27 @@ function renderButtons() {
     newGiph.attr("data-name", giphy[i]);
     newGiph.text(giphy[i]);
 
-    $("#buttons-view").append(newGiph);
+    $("#giphy-view").append(newGiph);
   }
 }
+
+//functions for event of add giphy getting clicked
+$("#add-giphy").on("click", function(event) {
+  event.preventDefault();
+
+  var giph = $("#giphy-input")
+    .val()
+    .trim();
+
+  //movie from textbox added to array
+  giphy.push(giph);
+
+  //call renderButtons
+  renderButtons();
+});
+
+//add click event listeners to all elements with a class of "giphy"
+$(document).on("click", ".giphy", displayGiphy);
+
+//call the renderButtons to display initial buttons
+renderButtons();
