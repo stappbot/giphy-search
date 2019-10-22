@@ -11,24 +11,32 @@ var giphy = [
 function displayGiphy() {
   var giph = $(this).attr("data-name");
   var queryURL =
-    "http://api.giphy.com/v1/gifs/search" +
-    giphy +
+    "https://api.giphy.com/v1/gifs/search?q=" +
+    giph +
     "&apikey=3qa36TfqgfrKDr9roPZQrX8iflqGDn4a";
-
+  console.log(queryURL);
   $.ajax({
-    URL: queryURL,
+    url: queryURL,
     method: "GET"
   }).then(function(response) {
     console.log(response);
 
     //create div to hold giphy
-    $("#giphy-view").append("<div><strong>" + giphy + "</strong></div>");
+    $("#giphy-view").append("<div><strong>" + giph + "</strong></div>");
     //retrieve rating data
-    let rating = response.rating;
-    // console.log(response.data);
-    // console.log(response.rating);
-    // console.log(response.data.rating);
-    console.log(rating);
+    let data = response.data;
+    for (let i = 0; i < data.length; i++) {
+      //make new div to display rating and giphy
+      var giphyReel = $("<div>");
+      giphyReel.addClass("showIt");
+      giphyReel.attr("data-name", data[i]);
+      giphyReel.image(data[i]);
+
+      $("#giphy-display").append(giphyReel);
+      //for each one, append to giphy-view (image and source attribute)
+    }
+    //
+
     //create element to have rating displayed and display it
     $("#giphy-view").append("<div>" + rating + "</div>");
   });
