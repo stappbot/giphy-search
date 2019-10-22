@@ -32,13 +32,13 @@ function displayGiphy() {
       giphyReel.attr("data-name", data[i]);
       giphyReel.image(data[i]);
 
-      $("#giphy-display").append(giphyReel);
       //for each one, append to giphy-view (image and source attribute)
     }
     //
 
     //create element to have rating displayed and display it
-    $("#giphy-view").append("<div>" + rating + "</div>");
+    $("#giphy-display").append("<div>" + rating + "</div>");
+    $("#giphy-display").attr("src", response.data[i].fixed_height.url);
   });
 }
 
