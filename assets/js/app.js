@@ -5,10 +5,17 @@ var giphy = [
   "Bicycle",
   "Massage",
   "Jellyfish",
-  "Seinfeld"
+  "Seinfeld",
+  "Skeleton",
+  "Vampire",
+  "Turtle",
+  "Ganesha",
+  "Sloth",
+  "Glasses"
 ];
 
 function displayGiphy() {
+  $("#giphy-display").empty();
   var giph = $(this).attr("data-name");
   var queryURL =
     "https://api.giphy.com/v1/gifs/search?q=" +
@@ -21,24 +28,27 @@ function displayGiphy() {
   }).then(function(response) {
     console.log(response);
 
-    //create div to hold giphy
-    $("#giphy-view").append("<div><strong>" + giph + "</strong></div>");
-    //retrieve rating data
     let data = response.data;
+
     for (let i = 0; i < data.length; i++) {
       //make new div to display rating and giphy
-      var giphyReel = $("<div>");
-      giphyReel.addClass("showIt");
-      giphyReel.attr("data-name", data[i]);
-      giphyReel.image(data[i]);
+      var giphyBox = $("<div>");
+      var rating = $("<p>" + data[i].rating + "</p>");
+      //rating.attr("src", data[i].rating);
+      //console.log(rating);
+      console.log(data[i].rating);
+      //add rating to giphyBox
+      var giphyReel = $("<img>");
+      giphyReel
+        .addClass("show-it")
+        .attr("src", data[i].images.fixed_height.url);
+      //add giphyReel to giphyBox
+      //not working>>$(giphyBox).append(giphyReel);
+      //not working >> $(giphyBox).prepend(rating);
 
-      //for each one, append to giphy-view (image and source attribute)
+      $("#giphy-display").append(giphyReel);
+      //^show giphyBox, instead of giphyReel
     }
-    //
-
-    //create element to have rating displayed and display it
-    $("#giphy-display").append("<div>" + rating + "</div>");
-    $("#giphy-display").attr("src", response.data[i].fixed_height.url);
   });
 }
 
@@ -52,6 +62,7 @@ function renderButtons() {
     var newGiph = $("<button>");
 
     newGiph.addClass("giphy");
+    newGiph.addClass("btn btn-outline-success");
     newGiph.attr("data-name", giphy[i]);
     newGiph.text(giphy[i]);
 
