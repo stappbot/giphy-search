@@ -13,6 +13,8 @@ var giphy = [
   "Sloth",
   "Glasses"
 ];
+var limit = 10;
+var currentPage = 0;
 
 function displayGiphy() {
   $("#giphy-display").empty();
@@ -24,7 +26,12 @@ function displayGiphy() {
   $.ajax({
     url: "https://api.giphy.com/v1/gifs/search",
     method: "GET",
-    data: { apikey: "3qa36TfqgfrKDr9roPZQrX8iflqGDn4a", q: giph }
+    data: {
+      apikey: "3qa36TfqgfrKDr9roPZQrX8iflqGDn4a",
+      q: giph,
+      limit: 10,
+      offset: 0
+    }
   }).then(function(response) {
     console.log(response);
 
@@ -105,6 +112,20 @@ $(document).on("click", ".show", function() {
   } else {
     gif.attr("src", gif.attr("data-still"));
     gif.attr("data-state", "still");
+  }
+});
+
+//next page button click event
+$("#next-page").on("click", function() {
+  currentPage++;
+  console.log(currentPage);
+});
+
+//next page button click event
+$("#prev-page").on("click", function() {
+  if (currentPage > 0) {
+    currentPage--;
+    console.log(currentPage);
   }
 });
 
