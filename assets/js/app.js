@@ -33,8 +33,8 @@ function displayGiphy() {
     for (let i = 0; i < data.length; i++) {
       //make new div to display rating and giphy
       var giphyBox = $("<div>");
-      var rating = $("<p>" + data[i].rating + "</p>");
-      //rating.attr("src", data[i].rating);
+      var rating = $("<p>");
+      rating.text(data[i].rating);
       //console.log(rating);
       console.log(data[i].rating);
       //add rating to giphyBox
@@ -43,10 +43,11 @@ function displayGiphy() {
         .addClass("show-it")
         .attr("src", data[i].images.fixed_height.url);
       //add giphyReel to giphyBox
-      //not working>>$(giphyBox).append(giphyReel);
-      //not working >> $(giphyBox).prepend(rating);
 
-      $("#giphy-display").append(giphyReel);
+      giphyBox.append(giphyReel);
+      giphyBox.append(rating);
+
+      $("#giphy-display").append(giphyBox);
       //^show giphyBox, instead of giphyReel
     }
   });
