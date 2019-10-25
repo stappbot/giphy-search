@@ -39,12 +39,13 @@ function displayGiphy() {
       //add rating to giphyBox
       var giphyReel = $("<img>");
       giphyReel
-        .addClass("show")
         .attr("src", data[i].images.fixed_height_still.url)
         .attr("data-still", data[i].images.fixed_height_still.url)
         .attr("data-animate", data[i].images.fixed_height.url)
         .attr("data-state", "still");
       //.attr(data-)^^
+      giphyReel.addClass("show");
+
       //add giphyReel to giphyBox
       var title = $("<p>");
       title.text("Title: " + data[i].title);
@@ -92,20 +93,20 @@ $("#add-giphy").on("click", function(event) {
   renderButtons();
 });
 
-// //function for animating gif upon clicking
-// $(".show").on("click", function() {
-//   var gif = $(this);
-//   console.log("This is: " + this);
-//   var state = gif.attr("data-state");
+//function for animating gif upon clicking
+$(document).on("click", ".show", function() {
+  var gif = $(this);
+  console.log("This is: " + this);
+  var state = gif.attr("data-state");
 
-//   if (state === "still") {
-//     gif.attr("src", gif.attr("data-animate"));
-//     gif.attr("data-state", "animate");
-//   } else {
-//     gif.attr("src", gif.attr("data-still"));
-//     gif.attr("data-state", "still");
-//   }
-// });
+  if (state === "still") {
+    gif.attr("src", gif.attr("data-animate"));
+    gif.attr("data-state", "animate");
+  } else {
+    gif.attr("src", gif.attr("data-still"));
+    gif.attr("data-state", "still");
+  }
+});
 
 //add click event listeners to all elements with a class of "giphy"
 $(document).on("click", ".giphy", displayGiphy);
