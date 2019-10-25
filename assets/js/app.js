@@ -44,8 +44,13 @@ function displayGiphy() {
         .attr("src", data[i].images.fixed_height.url);
       //.attr(data-)
       //add giphyReel to giphyBox
+      var title = $("<p>");
+      title.text("Title: " + data[i].title);
+      console.log(data[i].title);
+
       giphyBox.append(giphyReel);
       giphyBox.append(rating);
+      giphyBox.append(title);
 
       $("#giphy-display").append(giphyBox);
       //^show giphyBox, instead of giphyReel
