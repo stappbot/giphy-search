@@ -1,3 +1,14 @@
 .giphy {
   margin: 5px;
 }
+.container-flex {
+  padding: 5px;
+  text-align: center;
+}
+#giphy-display {
+  padding: 5px;
+}
+.view-container {
+  display: flex;
+  flex-wrap: wrap;
+}

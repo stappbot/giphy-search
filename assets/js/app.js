@@ -34,7 +34,7 @@ function displayGiphy() {
       //make new div to display rating and giphy
       var giphyBox = $("<div>");
       var rating = $("<p>");
-      rating.text(data[i].rating);
+      rating.text("Rated: " + data[i].rating);
       //console.log(rating);
       console.log(data[i].rating);
       //add rating to giphyBox
@@ -42,8 +42,8 @@ function displayGiphy() {
       giphyReel
         .addClass("show-it")
         .attr("src", data[i].images.fixed_height.url);
+      //.attr(data-)
       //add giphyReel to giphyBox
-
       giphyBox.append(giphyReel);
       giphyBox.append(rating);
 
