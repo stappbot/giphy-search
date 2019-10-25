@@ -17,14 +17,14 @@ var giphy = [
 function displayGiphy() {
   $("#giphy-display").empty();
   var giph = $(this).attr("data-name");
-  var queryURL =
-    "https://api.giphy.com/v1/gifs/search?q=" +
-    giph +
-    "&apikey=3qa36TfqgfrKDr9roPZQrX8iflqGDn4a";
-  console.log(queryURL);
+  //   var queryURL =
+  //     "https://api.giphy.com/v1/gifs/search?q=" +
+  //     giph +
+  //     "&apikey=3qa36TfqgfrKDr9roPZQrX8iflqGDn4a";
   $.ajax({
-    url: queryURL,
-    method: "GET"
+    url: "https://api.giphy.com/v1/gifs/search",
+    method: "GET",
+    data: { apikey: "3qa36TfqgfrKDr9roPZQrX8iflqGDn4a", q: giph }
   }).then(function(response) {
     console.log(response);
 
