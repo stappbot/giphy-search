@@ -16,9 +16,14 @@ var giphy = [
 var limit = 10;
 var currentPage = 0;
 
-function displayGiphy() {
+var currentTopic = "";
+var currentOffset = 0;
+
+function displayGiphy(offset = 0, target = $(this)) {
   $("#giphy-display").empty();
-  var giph = $(this).attr("data-name");
+  var giph = $(target).attr("data-name");
+  $("#next-page").attr("data-name", giph);
+  $("#prev-page").attr("data-name", giph);
   //   var queryURL =
   //     "https://api.giphy.com/v1/gifs/search?q=" +
   //     giph +
@@ -30,7 +35,7 @@ function displayGiphy() {
       apikey: "3qa36TfqgfrKDr9roPZQrX8iflqGDn4a",
       q: giph,
       limit: 10,
-      offset: 0
+      offset: parseInt(offset)
     }
   }).then(function(response) {
     console.log(response);
@@ -116,16 +121,20 @@ $(document).on("click", ".show", function() {
 });
 
 //next page button click event
-$("#next-page").on("click", function() {
+$("#next-page").on("click", function(event) {
   currentPage++;
-  console.log(currentPage);
+  currentOffset += 10;
+  let target = event.target;
+  displayGiphy(currentOffset, target);
 });
 
 //next page button click event
 $("#prev-page").on("click", function() {
   if (currentPage > 0) {
     currentPage--;
-    console.log(currentPage);
+    currentOffset -= 10;
+    let target = event.target;
+    displayGiphy(currentOffset, target);
   }
 });
 
